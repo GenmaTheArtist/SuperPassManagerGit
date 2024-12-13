@@ -1,5 +1,26 @@
 extends Node2D
 
+#bootScreen
+#> The default screen of the application. Used to set Master username + password.
+#> Upon boot, checks to see if masterPass exists and if requiredLogin is true.
+#If both are true, then the screen switches to AppLogin
+#> Otherwise this program asks the user to input their 
+#Master username and password. Then, if it matches the strength requirements
+#then it switches to the confirmation screen.
+#> At the confirmation screen you are given a chance to copy the data elsewhere.
+#> When Submit is pressed, data is written to masterPass.json and switches to 
+#the main screen.
+#> At the confirmation screen you can click a toggle to set whether you want
+#to be asked to Login every single time.
+#
+#
+#IMPORTANT:
+#User is expected to keep their Master username and password elsewhere
+#for security purposes. This is not the most efficient form of security,
+#but it is how this application works.
+#This way you only need to remember one password.
+#--------------------------------------------------------------
+
 const SAVE_DIR = "user://saves/"
 const SAVE_FILE_NAME = "masterPass.json"
 const SECURITY_KEY = "2QPYVS2A"
@@ -26,21 +47,25 @@ func _ready():
 	verify_save_directory(SAVE_DIR)
 	var path = SAVE_DIR + SAVE_FILE_NAME
 	var file = FileAccess.open_encrypted_with_pass(path, FileAccess.READ, SECURITY_KEY)
+	#
 	if (file == null):
-		#deleteSavedKeys(SAVE_DIR + DEL_SAVE)
 		print ("get_open_error onBoot: ", FileAccess.get_open_error())
 	if (file != null):
 		checkRequired(path)
 
+#switches to the Main Screen.
 func switch_to_main():
 	get_tree().change_scene_to_file.bind("res://MainScreen.tscn").call_deferred()
 
+#switches to the AppLogin screen.
 func switch_to_login():
 	get_tree().change_scene_to_file.bind("res://AppLogin.tscn").call_deferred()
 
+#verifies save directory
 func verify_save_directory(path: String):
 	DirAccess.make_dir_absolute(path)
 	
+#This function write the contents of stored_data to masterPass.json
 func save_data(path: String):
 	var file = FileAccess.open_encrypted_with_pass(path, FileAccess.READ, SECURITY_KEY)
 	if file != null:
@@ -67,6 +92,8 @@ func save_data(path: String):
 	file.store_string(json_string)
 	file.close()
 
+#This function is called by _ready if masterPass.json exists. 
+#It checks requiredLogin and decides which screen this application will be switching to.
 func checkRequired(path: String):
 	if FileAccess.file_exists(path):
 		var file = FileAccess.open_encrypted_with_pass(path, FileAccess.READ, SECURITY_KEY)
@@ -88,6 +115,7 @@ func checkRequired(path: String):
 	else:
 		printerr("Cannot open non-existent file at %s!" % [path])
 
+#This function reads masterPass.json and copies its contents to stored_data.
 func load_data(path: String):
 	if FileAccess.file_exists(path):
 		var file = FileAccess.open_encrypted_with_pass(path, FileAccess.READ, SECURITY_KEY)
@@ -111,11 +139,12 @@ func load_data(path: String):
 	else:
 		printerr("Cannot open non-existent file at %s!" % [path])
 
+#This function takes in a string, and a number of unique characters.
+#It then compares the string to keyTerms, and increments minNum for each one it finds.
+#returns true if i >= minNum
 func testPassword(new_pass: String, minNum: int):
 	#new_pass is a string being checked for characters
 	#minNum is the number of characters being checked for
-	print("testPassword received ", new_pass)
-	print("password length: ", new_pass.length())
 	var tempInt = 0
 	if (len(new_pass) <= 8):
 		print("incorrect number of characters")
@@ -131,6 +160,8 @@ func testPassword(new_pass: String, minNum: int):
 	else:
 		return false
 
+#This is currently Unused. But was written last minute to potentially delete pList.json
+#This is a security measure, that can possibly be implemented in the future.
 func deleteSavedKeys(path: String):
 	#checks if file exists
 	var file = FileAccess.open_encrypted_with_pass(path, FileAccess.READ, DEL_KEY)
@@ -151,23 +182,28 @@ func deleteSavedKeys(path: String):
 	file.close()
 	return
 
+#when typing into field, dynamically assigns data to stored_data.username
 func _on_username_text_changed(new_text):
 	stored_data.username = new_text
 
-
+#when enter key is hit assigns data to stored_data.username, then submits.
 func _on_username_text_submitted(new_text):
 	stored_data.username = new_text
 	_on_submit_pressed()
 	
-
+#when typing into field, dynamically assigns data to stored_data.username
 func _on_password_text_changed(new_text):
 	stored_data.password = new_text
 	
-
+#when enter key is hit assigns data to stored_data.username, then submits.
 func _on_password_text_submitted(new_text):
 	stored_data.password = new_text	
 	_on_submit_pressed()
 
+#This is the initial submit button.
+#This checks if username and password fields are filled out.
+#Then calles testpassword to test password strength.
+#then switches to the confirmation UI.
 func _on_submit_pressed():
 	if(!passFailed.is_visible_in_tree()):
 		passFailed.visible = !passFailed.visible
@@ -185,7 +221,8 @@ func _on_submit_pressed():
 	confScreen.visible = !confScreen.visible
 	normScreen.visible = !normScreen.visible
 	
-
+#This is used to toggle whether requireLogin will be required.
+#It also toggles the graphic.
 func _on_require_login_pressed():
 	if(stored_data.requiredLogin == true):
 		logonCheck.visible = !logonCheck.visible
@@ -194,12 +231,12 @@ func _on_require_login_pressed():
 		logonCheck.visible = !logonCheck.visible
 		stored_data.requiredLogin = true	
 
-
+#This function is used to call the save function and then switches to
+#the main screen.
 func _on_final_confirm_pressed():
 	save_data(SAVE_DIR + SAVE_FILE_NAME)
 	load_data(SAVE_DIR + SAVE_FILE_NAME)
-	print("username is ", stored_data.username)
-	print("password is ", stored_data.password)
+	#unused code, may be implemented later
 	var i = 0
 	if(del_data != null):
 		while (i <len(del_data.array)):
@@ -207,6 +244,7 @@ func _on_final_confirm_pressed():
 			#print("loaded the username: ", del_data.array[i+1], "\n")
 			#print("loaded the password: ", del_data.array[i+2], "\n")
 			i+=3
+	#end of unused code
 	switch_to_main()
 
 

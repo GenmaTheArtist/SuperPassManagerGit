@@ -1,5 +1,18 @@
 extends Node2D
 
+#viewPass
+#> This screen displays the list of passwords entered. The user can delete these passwords using
+#the buttons on the side. It does this using their hidden ID data in pList.json.
+#> At ready all of the text in the display fields are replaced with data from the pList array.
+#> Upon deleting data, the screen will reset to show the changes.
+#> Deleting data is accomplished using array replacement techniques in deleteProcess.
+# All of these fields can be copy-pasted.
+# 
+#Important Note:
+# To my knowledge I cannot hide the password fields, as it makes it impossible to copy the text.
+# Not sure why this is the case, but will blame Godot for this one.
+#--------------------------------------------------------------
+
 const SAVE_DIR = "user://saves/"
 const SAVE_FILE_NAME = "pList.json"
 const SECURITY_KEY = "4234AF5B"
@@ -17,9 +30,9 @@ func _ready():
 	accounts = $CanvasLayer/accountList
 	usernames = $CanvasLayer/userList
 	passwords = $CanvasLayer/passList
-	
 	initializeView()
 
+#stores the data located in pList into stored_data
 func load_data(path: String):
 	if FileAccess.file_exists(path):
 		var file = FileAccess.open_encrypted_with_pass(path, FileAccess.READ, SECURITY_KEY)
@@ -44,6 +57,8 @@ func load_data(path: String):
 	else:
 		printerr("Cannot open non-existent file at %s!" % [path])
 
+#This function converts the data in the textboxes to the corresponding data in the pList array.
+#view the 'moreStoredData' array comment for reference
 func initializeView():
 	load_data(SAVE_DIR + SAVE_FILE_NAME)
 	accounts.text = ""
@@ -55,7 +70,10 @@ func initializeView():
 		usernames.text += (stored_data.array[i+2] + "\n")
 		passwords.text += (stored_data.array[i+3] + "\n")
 		i+=4
-
+		
+#This receives the corresponding ID value of the member to be deleted.
+#Then it searches the array for the ID, and passes the require information
+#to deleteProcess.
 func delete(passedID: int):
 	var i = 0
 	while (i <len(stored_data.array)):
@@ -64,6 +82,12 @@ func delete(passedID: int):
 			return
 		i+=4
 
+#This function receives the ID and array Location of the file to be deleted.
+#it is a hybrid of load and save, and is relatively complex.
+#> The idea is it uses a few temp arrays to copy the data in stored_data, and only
+#keeps what will be used.
+#> Once it is finished, stored_data is replaced with the finished tempArray and 
+#saves to file. Afterwards this resets the screen.
 func deleteProcess(passedID: int, arrayLoc: int, path: String):
 	#checks if file exists
 	var file = FileAccess.open_encrypted_with_pass(path, FileAccess.READ, SECURITY_KEY)
@@ -136,7 +160,8 @@ func deleteProcess(passedID: int, arrayLoc: int, path: String):
 	file.close()
 	get_tree().reload_current_scene()
 
-#The rest of this page is button calls
+#The rest of this page is button calls.
+#--------------------------------------------------------
 func _on_del_1_pressed():
 	delete(1)
 func _on_del_2_pressed():
@@ -168,6 +193,6 @@ func _on_del_14_pressed():
 func _on_del_15_pressed():
 	delete(15)
 
-
+#Returns to main screen.
 func _on_button_pressed():
 	get_tree().change_scene_to_file.bind("res://MainScreen.tscn").call_deferred()

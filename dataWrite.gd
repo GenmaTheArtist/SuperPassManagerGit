@@ -1,5 +1,7 @@
 extends Node2D
 
+#Unused test code for an unused screen.
+
 const SAVE_DIR = "user://saves/"
 const SAVE_FILE_NAME = "inputPass.json"
 const SECURITY_KEY = "4234AF5B"

@@ -1,4 +1,10 @@
 extends CanvasLayer
+
+#checkMaster
+#> This program is one of two programs on the Main screen
+#> This program toggles the requiredLogin value.
+#--------------------------------------------------------------
+
 const SAVE_DIR = "user://saves/"
 const SAVE_FILE_NAME = "masterPass.json"
 const SECURITY_KEY = "2QPYVS2A"
@@ -13,7 +19,8 @@ func _ready():
 	load_data(SAVE_DIR + SAVE_FILE_NAME)
 	if(stored_data.requiredLogin == true):
 		checkLogon.visible = !checkLogon.visible
-		
+
+#This function write the contents of stored_data to masterPass.json	
 func save_data(path: String):
 	var file = FileAccess.open_encrypted_with_pass(path, FileAccess.READ, SECURITY_KEY)
 	if file != null:
@@ -36,6 +43,7 @@ func save_data(path: String):
 	file.store_string(json_string)
 	file.close()
 
+#loads the data from the file located at the path, then stores it in stored_data.
 func load_data(path: String):
 	if FileAccess.file_exists(path):
 		var file = FileAccess.open_encrypted_with_pass(path, FileAccess.READ, SECURITY_KEY)
@@ -57,7 +65,7 @@ func load_data(path: String):
 	else:
 		printerr("Cannot open non-existent file at %s!" % [path])
 
-
+#toggles requiredLogin's value in stored_Data, then saves that value onto MasterPass.json
 func _on_require_login_pressed():
 	if(stored_data.requiredLogin == true):
 		checkLogon.visible = !checkLogon.visible

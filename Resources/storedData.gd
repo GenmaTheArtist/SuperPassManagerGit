@@ -1,5 +1,6 @@
 extends Node
 class_name storedData
+#class used for MasterPass.json
 
 @export var ID = 0
 @export var username = ""

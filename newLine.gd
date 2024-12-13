@@ -1,5 +1,6 @@
 extends LineEdit
-
+#doesn't do anything but is called by other resources so do not delete.
+#This is a result of messy coding on my behalf.
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
