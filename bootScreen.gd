@@ -126,7 +126,7 @@ func testPassword(new_pass: String, minNum: int):
 			tempInt += 1
 		i+=1
 	print("number of characters is: ", tempInt, "\n")
-	if (tempInt > minNum):
+	if (tempInt >= minNum):
 		return true
 	else:
 		return false
