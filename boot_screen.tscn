@@ -1,0 +1,169 @@
+[gd_scene load_steps=5 format=3 uid="uid://bg7u1wgloos44"]
+
+[ext_resource type="Script" path="res://bootScreen.gd" id="1_1jmcp"]
+[ext_resource type="Script" path="res://newLine.gd" id="2_o7hby"]
+[ext_resource type="Texture2D" uid="uid://bplxluutmiroy" path="res://Resources/review bg 5.png" id="3_jw3co"]
+[ext_resource type="Texture2D" uid="uid://d4jl31uo1c3ut" path="res://Resources/checkbox.png" id="4_40ma1"]
+
+[node name="Boot screen" type="Node2D"]
+script = ExtResource("1_1jmcp")
+
+[node name="NormalLayer" type="CanvasLayer" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NormalLayer"]
+offset_left = 25.0
+offset_top = 36.0
+offset_right = 779.0
+offset_bottom = 259.0
+theme_override_font_sizes/normal_font_size = 26
+bbcode_enabled = true
+text = "[center]Enter a Username and Password for this application.
+This can be used to log in if desired.
+
+Must contain at least 1 special character, and at minimum
+8 characters in length.
+    ( . , ! , _ ,  @,  # , $ , % , & , * , / , 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9)"
+
+[node name="username" type="LineEdit" parent="NormalLayer"]
+custom_minimum_size = Vector2(500, 0)
+offset_left = 139.0
+offset_top = 263.0
+offset_right = 639.0
+offset_bottom = 294.0
+placeholder_text = "Username"
+script = ExtResource("2_o7hby")
+metadata/_edit_use_anchors_ = true
+
+[node name="password" type="LineEdit" parent="NormalLayer"]
+custom_minimum_size = Vector2(500, 0)
+offset_left = 140.0
+offset_top = 301.0
+offset_right = 640.0
+offset_bottom = 332.0
+placeholder_text = "Password"
+metadata/_edit_use_anchors_ = true
+
+[node name="submit" type="Button" parent="NormalLayer"]
+custom_minimum_size = Vector2(100, 25)
+offset_left = 335.0
+offset_top = 344.0
+offset_right = 435.0
+offset_bottom = 375.0
+text = "Submit"
+metadata/_edit_use_anchors_ = true
+
+[node name="passFail" type="RichTextLabel" parent="NormalLayer"]
+visible = false
+offset_left = 65.0
+offset_top = 383.0
+offset_right = 711.0
+offset_bottom = 444.0
+theme_override_colors/default_color = Color(1, 0.415686, 0.34902, 1)
+theme_override_font_sizes/normal_font_size = 21
+bbcode_enabled = true
+text = "[center]"
+
+[node name="ConfirmationLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ReviewBg5" type="Sprite2D" parent="ConfirmationLayer"]
+modulate = Color(0.65098, 0.65098, 0.65098, 1)
+position = Vector2(405, 239)
+texture = ExtResource("3_jw3co")
+
+[node name="LineEdit" type="LineEdit" parent="ConfirmationLayer"]
+offset_left = 20.0
+offset_top = 122.0
+offset_right = 771.0
+offset_bottom = 170.0
+editable = false
+
+[node name="LineEdit2" type="LineEdit" parent="ConfirmationLayer"]
+offset_left = 20.0
+offset_top = 242.0
+offset_right = 771.0
+offset_bottom = 289.0
+editable = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ConfirmationLayer"]
+offset_left = 142.0
+offset_top = 71.0
+offset_right = 642.0
+offset_bottom = 335.0
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "[center]Your Username is:
+
+Your Password is:"
+
+[node name="userConfirm" type="LineEdit" parent="ConfirmationLayer"]
+offset_left = 19.0
+offset_top = 122.0
+offset_right = 774.0
+offset_bottom = 171.0
+theme_override_font_sizes/font_size = 29
+text = "tempText"
+editable = false
+
+[node name="passConfirm" type="LineEdit" parent="ConfirmationLayer"]
+offset_left = 21.0
+offset_top = 241.0
+offset_right = 772.0
+offset_bottom = 289.0
+theme_override_font_sizes/font_size = 29
+text = "tempText"
+editable = false
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="ConfirmationLayer"]
+offset_left = 24.0
+offset_top = 285.0
+offset_right = 776.0
+offset_bottom = 380.0
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[center]Make sure to store these somewhere safe."
+
+[node name="FinalConfirm" type="Button" parent="ConfirmationLayer"]
+offset_left = 300.0
+offset_top = 351.0
+offset_right = 488.0
+offset_bottom = 423.0
+theme_override_font_sizes/font_size = 46
+text = "Confirm"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="ConfirmationLayer"]
+offset_left = 618.0
+offset_top = 389.0
+offset_right = 857.0
+offset_bottom = 429.0
+theme_override_font_sizes/normal_font_size = 21
+text = "Require Login"
+
+[node name="checkBox" type="Sprite2D" parent="ConfirmationLayer"]
+visible = false
+position = Vector2(594, 402)
+scale = Vector2(0.063, 0.063)
+texture = ExtResource("4_40ma1")
+
+[node name="requireLogin" type="Button" parent="ConfirmationLayer"]
+offset_left = 577.0
+offset_top = 385.0
+offset_right = 612.0
+offset_bottom = 418.0
+
+[node name="cancel" type="Button" parent="ConfirmationLayer"]
+offset_left = 78.0
+offset_top = 364.0
+offset_right = 226.0
+offset_bottom = 422.0
+theme_override_font_sizes/font_size = 36
+text = "Cancel"
+
+[connection signal="text_changed" from="NormalLayer/username" to="." method="_on_username_text_changed"]
+[connection signal="text_submitted" from="NormalLayer/username" to="." method="_on_username_text_submitted"]
+[connection signal="text_changed" from="NormalLayer/password" to="." method="_on_password_text_changed"]
+[connection signal="text_submitted" from="NormalLayer/password" to="." method="_on_password_text_submitted"]
+[connection signal="pressed" from="NormalLayer/submit" to="." method="_on_submit_pressed"]
+[connection signal="pressed" from="ConfirmationLayer/FinalConfirm" to="." method="_on_final_confirm_pressed"]
+[connection signal="pressed" from="ConfirmationLayer/requireLogin" to="." method="_on_require_login_pressed"]
+[connection signal="pressed" from="ConfirmationLayer/cancel" to="." method="_on_cancel_pressed"]

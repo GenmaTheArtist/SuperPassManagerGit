@@ -1,0 +1,73 @@
+[gd_scene load_steps=2 format=3 uid="uid://da7nwtb6vro5"]
+
+[ext_resource type="Script" path="res://AppLogin.gd" id="1_ag0lc"]
+
+[node name="Login" type="Node2D"]
+script = ExtResource("1_ag0lc")
+
+[node name="generalText" type="CanvasLayer" parent="."]
+
+[node name="prompt" type="RichTextLabel" parent="generalText"]
+offset_left = 1.0
+offset_top = 24.0
+offset_right = 798.0
+offset_bottom = 104.0
+theme_override_font_sizes/normal_font_size = 26
+bbcode_enabled = true
+text = "[center] Please enter your Username and Password for this application:"
+
+[node name="userPrompt" type="RichTextLabel" parent="generalText"]
+offset_left = 11.0
+offset_top = 99.0
+offset_right = 791.0
+offset_bottom = 136.0
+theme_override_font_sizes/normal_font_size = 26
+bbcode_enabled = true
+text = "Username:"
+
+[node name="passPrompt" type="RichTextLabel" parent="generalText"]
+offset_left = 11.0
+offset_top = 171.0
+offset_right = 799.0
+offset_bottom = 211.0
+theme_override_font_sizes/normal_font_size = 26
+bbcode_enabled = true
+text = "Password:"
+
+[node name="results" type="RichTextLabel" parent="generalText"]
+visible = false
+offset_left = 102.0
+offset_top = 337.0
+offset_right = 717.0
+offset_bottom = 411.0
+bbcode_enabled = true
+
+[node name="lineTexts" type="CanvasLayer" parent="."]
+
+[node name="Username" type="LineEdit" parent="lineTexts"]
+offset_left = 1.0
+offset_top = 135.0
+offset_right = 801.0
+offset_bottom = 171.0
+placeholder_text = "Enter your Username here:"
+
+[node name="Password" type="LineEdit" parent="lineTexts"]
+offset_left = 1.0
+offset_top = 204.0
+offset_right = 799.0
+offset_bottom = 238.0
+placeholder_text = "Enter your Password here:"
+
+[node name="submit" type="Button" parent="."]
+offset_left = 238.0
+offset_top = 258.0
+offset_right = 567.0
+offset_bottom = 306.0
+theme_override_font_sizes/font_size = 36
+text = "Submit"
+
+[connection signal="text_changed" from="lineTexts/Username" to="." method="_on_username_text_changed"]
+[connection signal="text_submitted" from="lineTexts/Username" to="." method="_on_username_text_submitted"]
+[connection signal="text_changed" from="lineTexts/Password" to="." method="_on_password_text_changed"]
+[connection signal="text_submitted" from="lineTexts/Password" to="." method="_on_password_text_submitted"]
+[connection signal="pressed" from="submit" to="." method="_on_submit_pressed"]

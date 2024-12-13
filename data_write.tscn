@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://yrl8xmpxeo8x"]
+
+[ext_resource type="Script" path="res://dataWrite.gd" id="1_bauau"]
+[ext_resource type="Script" path="res://newLine.gd" id="2_nwmyf"]
+
+[node name="DataWrite" type="Node2D"]
+script = ExtResource("1_bauau")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="username" type="LineEdit" parent="CanvasLayer"]
+custom_minimum_size = Vector2(500, 0)
+offset_left = 140.0
+offset_top = 169.0
+offset_right = 640.0
+offset_bottom = 200.0
+placeholder_text = "Username"
+script = ExtResource("2_nwmyf")
+metadata/_edit_use_anchors_ = true
+
+[node name="password" type="LineEdit" parent="CanvasLayer"]
+custom_minimum_size = Vector2(500, 0)
+offset_left = 140.0
+offset_top = 209.0
+offset_right = 640.0
+offset_bottom = 240.0
+placeholder_text = "Password"
+metadata/_edit_use_anchors_ = true
+
+[node name="submit" type="Button" parent="CanvasLayer"]
+custom_minimum_size = Vector2(100, 25)
+offset_left = 332.0
+offset_top = 247.0
+offset_right = 432.0
+offset_bottom = 278.0
+text = "Submit"
+metadata/_edit_use_anchors_ = true
+
+[node name="load" type="Button" parent="CanvasLayer"]
+offset_left = 358.0
+offset_top = 287.0
+offset_right = 404.0
+offset_bottom = 318.0
+text = "Load"
+metadata/_edit_use_anchors_ = true
+
+[node name="testPass" type="Button" parent="CanvasLayer"]
+custom_minimum_size = Vector2(100, 0)
+offset_left = 321.0
+offset_top = 334.0
+offset_right = 440.0
+offset_bottom = 365.0
+text = "Test Password"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="text_changed" from="CanvasLayer/username" to="." method="_on_username_text_changed"]
+[connection signal="text_submitted" from="CanvasLayer/username" to="." method="_on_username_text_submitted"]
+[connection signal="text_changed" from="CanvasLayer/password" to="." method="_on_password_text_changed"]
+[connection signal="text_submitted" from="CanvasLayer/password" to="." method="_on_password_text_submitted"]
+[connection signal="pressed" from="CanvasLayer/submit" to="." method="_on_submit_pressed"]
+[connection signal="pressed" from="CanvasLayer/load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="CanvasLayer/testPass" to="." method="_on_test_pass_pressed"]

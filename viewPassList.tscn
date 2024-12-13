@@ -1,0 +1,257 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhj35dm121s25"]
+
+[ext_resource type="Script" path="res://viewPassList.gd" id="1_6s6ip"]
+[ext_resource type="Texture2D" uid="uid://hi6csw4fapdy" path="res://Resources/delete icon.png" id="2_pvd4d"]
+
+[node name="ViewPassList" type="Node2D"]
+script = ExtResource("1_6s6ip")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SiteName" type="Label" parent="CanvasLayer"]
+offset_left = 3.0
+offset_top = 11.0
+offset_right = 174.0
+offset_bottom = 68.0
+theme_override_font_sizes/font_size = 31
+text = "Account:"
+
+[node name="Username" type="Label" parent="CanvasLayer"]
+offset_left = 203.0
+offset_top = 12.0
+offset_right = 446.0
+offset_bottom = 76.0
+theme_override_font_sizes/font_size = 31
+text = "Username:"
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 452.0
+offset_top = 12.0
+offset_right = 604.0
+offset_bottom = 56.0
+theme_override_font_sizes/font_size = 31
+text = "Password:"
+
+[node name="accountList" type="TextEdit" parent="CanvasLayer"]
+offset_left = -1.0
+offset_top = 53.0
+offset_right = 205.0
+offset_bottom = 446.0
+placeholder_text = "tempText"
+editable = false
+
+[node name="userList" type="TextEdit" parent="CanvasLayer"]
+offset_left = 206.0
+offset_top = 53.0
+offset_right = 452.0
+offset_bottom = 446.0
+text = "tempText"
+editable = false
+
+[node name="passList" type="TextEdit" parent="CanvasLayer"]
+offset_left = 453.0
+offset_top = 53.0
+offset_right = 762.0
+offset_bottom = 448.0
+text = "tempText
+"
+editable = false
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 660.0
+offset_right = 799.0
+offset_bottom = 37.0
+theme_override_font_sizes/font_size = 26
+text = "Go Back"
+
+[node name="DeleteButtons" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="DeleteButtons"]
+offset_left = 767.0
+offset_top = 54.0
+offset_right = 793.0
+offset_bottom = 447.0
+
+[node name="delete1" type="Sprite2D" parent="DeleteButtons/PanelContainer"]
+position = Vector2(13, 12.7044)
+scale = Vector2(0.0475, 0.0508175)
+texture = ExtResource("2_pvd4d")
+
+[node name="delete2" type="Sprite2D" parent="DeleteButtons/PanelContainer"]
+position = Vector2(13, 38.7044)
+scale = Vector2(0.048, 0.0515)
+texture = ExtResource("2_pvd4d")
+
+[node name="delete3" type="Sprite2D" parent="DeleteButtons/PanelContainer"]
+position = Vector2(13, 64.7044)
+scale = Vector2(0.0475, 0.0508175)
+texture = ExtResource("2_pvd4d")
+
+[node name="delete4" type="Sprite2D" parent="DeleteButtons/PanelContainer"]
+position = Vector2(13, 90.5794)
+scale = Vector2(0.048, 0.0515)
+texture = ExtResource("2_pvd4d")
+
+[node name="delete5" type="Sprite2D" parent="DeleteButtons/PanelContainer"]
+position = Vector2(13, 116.579)
+scale = Vector2(0.0475, 0.0508175)
+texture = ExtResource("2_pvd4d")
+
+[node name="delete6" type="Sprite2D" parent="DeleteButtons/PanelContainer"]
+position = Vector2(13, 142.579)
+scale = Vector2(0.048, 0.0515)
+texture = ExtResource("2_pvd4d")
+
+[node name="delete7" type="Sprite2D" parent="DeleteButtons/PanelContainer"]
+position = Vector2(13, 168.704)
+scale = Vector2(0.0475, 0.0508175)
+texture = ExtResource("2_pvd4d")
+
+[node name="delete8" type="Sprite2D" parent="DeleteButtons/PanelContainer"]
+position = Vector2(13, 194.704)
+scale = Vector2(0.048, 0.0515)
+texture = ExtResource("2_pvd4d")
+
+[node name="delete9" type="Sprite2D" parent="DeleteButtons/PanelContainer"]
+position = Vector2(13, 220.704)
+scale = Vector2(0.0475, 0.0508175)
+texture = ExtResource("2_pvd4d")
+
+[node name="delete10" type="Sprite2D" parent="DeleteButtons/PanelContainer"]
+position = Vector2(13, 246.579)
+scale = Vector2(0.048, 0.0515)
+texture = ExtResource("2_pvd4d")
+
+[node name="delete11" type="Sprite2D" parent="DeleteButtons/PanelContainer"]
+position = Vector2(13, 272.579)
+scale = Vector2(0.0475, 0.0508175)
+texture = ExtResource("2_pvd4d")
+
+[node name="delete12" type="Sprite2D" parent="DeleteButtons/PanelContainer"]
+position = Vector2(13, 298.579)
+scale = Vector2(0.048, 0.0515)
+texture = ExtResource("2_pvd4d")
+
+[node name="delete13" type="Sprite2D" parent="DeleteButtons/PanelContainer"]
+position = Vector2(13, 324.704)
+scale = Vector2(0.0475, 0.0508175)
+texture = ExtResource("2_pvd4d")
+
+[node name="delete14" type="Sprite2D" parent="DeleteButtons/PanelContainer"]
+position = Vector2(13, 350.579)
+scale = Vector2(0.048, 0.0515)
+texture = ExtResource("2_pvd4d")
+
+[node name="delete15" type="Sprite2D" parent="DeleteButtons/PanelContainer"]
+position = Vector2(13, 376.579)
+scale = Vector2(0.0475, 0.0508175)
+texture = ExtResource("2_pvd4d")
+
+[node name="ButtonLayer" type="CanvasLayer" parent="DeleteButtons"]
+
+[node name="del1" type="Button" parent="DeleteButtons/ButtonLayer"]
+offset_left = 768.0
+offset_top = 54.0
+offset_right = 792.0
+offset_bottom = 79.0
+
+[node name="del2" type="Button" parent="DeleteButtons/ButtonLayer"]
+offset_left = 768.0
+offset_top = 80.0
+offset_right = 792.0
+offset_bottom = 105.0
+
+[node name="del3" type="Button" parent="DeleteButtons/ButtonLayer"]
+offset_left = 768.0
+offset_top = 106.0
+offset_right = 792.0
+offset_bottom = 131.0
+
+[node name="del4" type="Button" parent="DeleteButtons/ButtonLayer"]
+offset_left = 768.0
+offset_top = 132.0
+offset_right = 792.0
+offset_bottom = 157.0
+
+[node name="del5" type="Button" parent="DeleteButtons/ButtonLayer"]
+offset_left = 768.0
+offset_top = 158.0
+offset_right = 792.0
+offset_bottom = 183.0
+
+[node name="del6" type="Button" parent="DeleteButtons/ButtonLayer"]
+offset_left = 768.0
+offset_top = 184.0
+offset_right = 792.0
+offset_bottom = 209.0
+
+[node name="del7" type="Button" parent="DeleteButtons/ButtonLayer"]
+offset_left = 768.0
+offset_top = 210.0
+offset_right = 792.0
+offset_bottom = 235.0
+
+[node name="del8" type="Button" parent="DeleteButtons/ButtonLayer"]
+offset_left = 768.0
+offset_top = 236.0
+offset_right = 792.0
+offset_bottom = 261.0
+
+[node name="del9" type="Button" parent="DeleteButtons/ButtonLayer"]
+offset_left = 768.0
+offset_top = 262.0
+offset_right = 792.0
+offset_bottom = 287.0
+
+[node name="del10" type="Button" parent="DeleteButtons/ButtonLayer"]
+offset_left = 768.0
+offset_top = 288.0
+offset_right = 792.0
+offset_bottom = 313.0
+
+[node name="del11" type="Button" parent="DeleteButtons/ButtonLayer"]
+offset_left = 768.0
+offset_top = 314.0
+offset_right = 792.0
+offset_bottom = 339.0
+
+[node name="del12" type="Button" parent="DeleteButtons/ButtonLayer"]
+offset_left = 768.0
+offset_top = 340.0
+offset_right = 792.0
+offset_bottom = 365.0
+
+[node name="del13" type="Button" parent="DeleteButtons/ButtonLayer"]
+offset_left = 768.0
+offset_top = 366.0
+offset_right = 792.0
+offset_bottom = 391.0
+
+[node name="del14" type="Button" parent="DeleteButtons/ButtonLayer"]
+offset_left = 768.0
+offset_top = 392.0
+offset_right = 792.0
+offset_bottom = 417.0
+
+[node name="del15" type="Button" parent="DeleteButtons/ButtonLayer"]
+offset_left = 768.0
+offset_top = 418.0
+offset_right = 792.0
+offset_bottom = 443.0
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="DeleteButtons/ButtonLayer/del1" to="." method="_on_del_1_pressed"]
+[connection signal="pressed" from="DeleteButtons/ButtonLayer/del2" to="." method="_on_del_2_pressed"]
+[connection signal="pressed" from="DeleteButtons/ButtonLayer/del3" to="." method="_on_del_3_pressed"]
+[connection signal="pressed" from="DeleteButtons/ButtonLayer/del4" to="." method="_on_del_4_pressed"]
+[connection signal="pressed" from="DeleteButtons/ButtonLayer/del5" to="." method="_on_del_5_pressed"]
+[connection signal="pressed" from="DeleteButtons/ButtonLayer/del6" to="." method="_on_del_6_pressed"]
+[connection signal="pressed" from="DeleteButtons/ButtonLayer/del7" to="." method="_on_del_7_pressed"]
+[connection signal="pressed" from="DeleteButtons/ButtonLayer/del8" to="." method="_on_del_8_pressed"]
+[connection signal="pressed" from="DeleteButtons/ButtonLayer/del9" to="." method="_on_del_9_pressed"]
+[connection signal="pressed" from="DeleteButtons/ButtonLayer/del10" to="." method="_on_del_10_pressed"]
+[connection signal="pressed" from="DeleteButtons/ButtonLayer/del11" to="." method="_on_del_11_pressed"]
+[connection signal="pressed" from="DeleteButtons/ButtonLayer/del12" to="." method="_on_del_12_pressed"]
+[connection signal="pressed" from="DeleteButtons/ButtonLayer/del13" to="." method="_on_del_13_pressed"]
+[connection signal="pressed" from="DeleteButtons/ButtonLayer/del14" to="." method="_on_del_14_pressed"]
+[connection signal="pressed" from="DeleteButtons/ButtonLayer/del15" to="." method="_on_del_15_pressed"]

@@ -1,0 +1,71 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2rwafcduup1p"]
+
+[ext_resource type="Script" path="res://MainScreen.gd" id="1_8vjpr"]
+[ext_resource type="Script" path="res://checkMaster.gd" id="2_impw5"]
+[ext_resource type="Texture2D" uid="uid://d4jl31uo1c3ut" path="res://Resources/checkbox.png" id="3_t6qwt"]
+
+[node name="MainControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 59.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8vjpr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("2_impw5")
+
+[node name="Store" type="Button" parent="CanvasLayer"]
+custom_minimum_size = Vector2(700, 0)
+offset_left = 55.0
+offset_top = 149.0
+offset_right = 755.0
+offset_bottom = 207.0
+theme_override_font_sizes/font_size = 30
+text = "Store Password"
+
+[node name="View" type="Button" parent="CanvasLayer"]
+custom_minimum_size = Vector2(700, 0)
+offset_left = 53.0
+offset_top = 251.0
+offset_right = 753.0
+offset_bottom = 309.0
+theme_override_font_sizes/font_size = 30
+text = "View Password"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 351.0
+offset_top = 396.0
+offset_right = 747.0
+offset_bottom = 433.0
+theme_override_font_sizes/normal_font_size = 21
+text = "Ask to login upon booting application."
+
+[node name="checkBox" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+position = Vector2(766.375, 412.625)
+scale = Vector2(0.0654999, 0.0654999)
+texture = ExtResource("3_t6qwt")
+
+[node name="requireLogin" type="Button" parent="CanvasLayer"]
+offset_left = 749.0
+offset_top = 396.0
+offset_right = 784.0
+offset_bottom = 429.0
+
+[node name="maxReached" type="RichTextLabel" parent="CanvasLayer"]
+visible = false
+offset_top = 19.0
+offset_right = 800.0
+offset_bottom = 136.0
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "[center]Maximum number of passwords reached. 
+Delete passwords to add new ones."
+
+[connection signal="pressed" from="CanvasLayer/Store" to="." method="_on_store_pressed"]
+[connection signal="pressed" from="CanvasLayer/View" to="." method="_on_view_pressed"]
+[connection signal="pressed" from="CanvasLayer/requireLogin" to="CanvasLayer" method="_on_require_login_pressed"]
