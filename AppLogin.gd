@@ -80,8 +80,6 @@ func _on_username_text_submitted(new_text):
 #If true, switches to main screen.
 func _on_submit_pressed():
 	load_data(SAVE_DIR + SAVE_FILE_NAME)
-	print("loaded: ", temp_data.password)
-	print("loaded: ", stored_data.password)
 	if(!textResults.is_visible_in_tree()):
 		textResults.visible = !textResults.visible
 	if (stored_data.password == "" || stored_data.username == ""):
